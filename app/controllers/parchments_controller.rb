@@ -1,0 +1,2 @@
+class ParchmentsController < ApplicationController
+end
