@@ -1,7 +1,1 @@
-  <%= form_for [@envelope, Parchment.new] do |f| %>
-    <div class="field">
-      <%= f.label :parchment, "File" %>
-      <%= f.file_field :parchment %>
-    </div>
-    <%= f.submit %>
-  <% end %>
+<%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>

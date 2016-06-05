@@ -1,8 +1,9 @@
 class ParchmentsController < ApplicationController
+
   def create
     binding.pry
     @parchment = Parchment.new(parchment_params)
-
+    @parchment.envelope = Envelope.find(params[:envelope_id])
     if @parchment.save
       redirect to @parchment.envelope, notice: "upload successful"
     else
@@ -10,7 +11,11 @@ class ParchmentsController < ApplicationController
     end
   end
 
+  private
+
   def parchment_params
-    params.require(:envelope).permit(:parchment)
+    params.require(:parchment).permit(:parcel)
   end
+
+
 end
