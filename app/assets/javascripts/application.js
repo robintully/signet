@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-ui
-//= require jquery-fileupload
+//= require jquery-fileupload/basic
 //= require_tree .
