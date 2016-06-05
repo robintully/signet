@@ -22,8 +22,6 @@ $(function() {
       },
       start: function (e) {
         submitButton.prop('disabled', true);
-        alert('uploading!')
-
         progressBar.
           css('background', 'green').
           css('display', 'block').

@@ -1,0 +1,11 @@
+<%= form_for :user, url: sign_up_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: "Full Name" %><br>
+  <%= f.label :email_address %>
+  <%= f.text_field :email_address, placeholder: "example@company.com" %><br>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "Choose a strong password" %><br>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm password" %><br>
+  <%= f.submit ("Register User"), class: "btn btn-default" %>
+<% end %>
