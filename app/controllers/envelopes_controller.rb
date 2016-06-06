@@ -1,15 +1,18 @@
 class EnvelopesController < ApplicationController
   before_action :set_s3_direct_post, only: [:edit,:show]
   before_action :authenticated_only, only: [:create, :edit, :update]
-  before_action :set_envelope, only: [:show, :edit, :update]
+  before_action :set_envelope, only: [:new, :show, :edit, :update]
 
   def new
+    @envelope = Envelope.new
+    @times = ExpirationSetter.expiration_options
     @user = User.new
   end
 
   def create
     slug = WordGetter.random_word
-    @envelope = Envelope.create(user: current_user, slug: slug)
+    expiration = ExpirationSetter.set_expiration(params[:envelope][:expiration])
+    @envelope = Envelope.create(user: current_user, slug: slug, expiration: expiration)
     redirect_to envelope_path(@envelope)
   end
 

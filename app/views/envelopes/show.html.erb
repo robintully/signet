@@ -1,6 +1,6 @@
 <h1>Envelope: <%= @envelope.slug %> </h1>
 <h1>Creator: <%= @envelope.user.name %> </h1>
-
+<h1>Expires: <%= @envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
 <h1>Parchments: </h1>
 <% @parchments.each do |parchment| %>
 <h2> <%= link_to parchment.s3_url.split("/").last,parchment.s3_url %> </h2>
