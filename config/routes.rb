@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'envelopes#new'
+  get '/:id', to: 'envelopes#show'
+  post '/envelopes/:id/parchments', to: 'parchments#create'
+
+
   get 'sign-in', to: 'sessions#new', as: 'sign-in'
   post 'sign-in', to: 'sessions#create'
   get 'sign-up', to: 'registrations#new', as: 'sign-up'

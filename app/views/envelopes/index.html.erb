@@ -1,0 +1,9 @@
+<h1> Envelopes: </h1>
+<% @envelopes.each do |envelope| %>
+<h2> Slug: <%= link_to envelope.slug , "/" + envelope.slug %>  </h2>
+<h3> Expires: <%= envelope.expiration %> </h3>
+<h3>Parchments: </h3>
+<% envelope.parchments.each do |parchment| %>
+<h4> <%= parchment.s3_url.split("/").last %> </h4>
+<% end %>
+<% end %>

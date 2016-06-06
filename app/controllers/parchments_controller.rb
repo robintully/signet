@@ -1,11 +1,9 @@
 class ParchmentsController < ApplicationController
 
   def create
-    binding.pry
-    @parchment = Parchment.new(parchment_params)
-    @parchment.envelope = Envelope.find(params[:envelope_id])
+    @parchment = Parchment.new(s3_url: parchment_params[:parcel], envelope_id: params[:envelope_id])
     if @parchment.save
-      redirect to @parchment.envelope, notice: "upload successful"
+      redirect_to @parchment.envelope, notice: "upload successful"
     else
       render 'envelopes/show'
     end
