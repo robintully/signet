@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'envelopes#new'
+  root 'home#index'
   resources :users, except: :index
   resources :envelopes, except: [:edit, :delete] do
     resources :parchments, only: :create
