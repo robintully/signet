@@ -2,7 +2,7 @@ $(function() {
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
     console.log(fileInput)
-    var counter      = 0
+    var counter      = 1
     var form         = $(fileInput.parents('form:first'));
     var submitButton = form.find('input[type="submit"]');
     var progressBar  = $("<div class='bar'></div>");
@@ -38,7 +38,7 @@ $(function() {
         var url   = '//' + form.data('host') + '/' + key;
 
         // create hidden field
-        var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
+        var input = $("<input />", { type:'hidden', name: 'parchment[parchment[' + counter +']]', value: url })
         counter++
         form.append(input);
       },
