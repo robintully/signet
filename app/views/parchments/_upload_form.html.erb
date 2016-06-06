@@ -1,7 +1,10 @@
   <%= form_for [@envelope, Parchment.new], html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} } do |f| %>
     <div class="field">
-      <%= f.label :parcel, "File" %>
-      <%= f.file_field :parcel %>
+      <%= f.label :parchment, "File" %>
+      <%= f.file_field(:parchment.to_s+ '[0]')  %>
     </div>
-    <%= f.submit %>
+    <div class="input-group">
+      <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+      <%= f.submit "Save Envelope", class: "btn btn-default" %>
+    </div>
   <% end %>

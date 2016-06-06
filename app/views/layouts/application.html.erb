@@ -26,10 +26,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <% if logged_in? %>
-          <li class="active"><%= link_to 'Create Envelope', envelopes_path, method: :post %></li>
-          <li class="active"><%= link_to 'My Envelopes', envelopes_path, method: :get %></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+          <li><%= link_to 'Create Envelope', new_envelope_path %></li>
+          <li><%= link_to 'My Envelopes', envelopes_path, method: :get %></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
