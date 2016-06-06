@@ -1,7 +1,7 @@
 $(function() {
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
-    var counter      = 1
+    var counter      = 1;
     var form         = $(fileInput.parents('form:first'));
     var submitButton = form.find('input[type="submit"]');
     var progressBar  = $("<div class='bar'></div>");
