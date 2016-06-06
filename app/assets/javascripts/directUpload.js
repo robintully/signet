@@ -15,7 +15,7 @@ $(function() {
       autoUpload:               true,
       limitMultiFileUploads:    3,
       maxNumberOfFiles:         10,
-      maxFileSize:              10000000,
+      maxFileSize:              1,
       sequentialUploads:        true,
       formData:                 form.data('form-data'),
       paramName:                'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
@@ -25,7 +25,6 @@ $(function() {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         progressBar.css('width', progress + '%')
       },
-      debugger;
       start: function (e) {
         submitButton.prop('disabled', true);
         progressBar.
