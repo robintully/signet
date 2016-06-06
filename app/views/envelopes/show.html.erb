@@ -7,7 +7,7 @@
   <%= submit_tag ("Assign Password"), class: "btn btn-default" %>
 <% end %>
 <h1>Parchments: </h1>
-<% @parchments.each do |parchment| %>
+<% @envelope.parchments.each do |parchment| %>
 <h2> <%= link_to parchment[:file], parchment.file.url
  %> </h2>
 <% end %>
