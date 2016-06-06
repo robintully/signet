@@ -18,10 +18,11 @@ class EnvelopesController < ApplicationController
 
   def show
     @envelope = Envelope.find_by_slug(params[:id])
-    if @envelope.password_digest == nil
+    if @envelope == nil
+      redirect_to root_path, flash: {error: "That's not a valid envelope"}
+    elsif @envelope.password_digest == nil
       session[:envelope_id] = @envelope.id
-    end
-    if @envelope.user == current_user || session[:envelope_id] == @envelope.id
+    elsif @envelope.user == current_user || session[:envelope_id] == @envelope.id
       @parchments = @envelope.parchments
       session[:envelope_id] = nil
       render :show
