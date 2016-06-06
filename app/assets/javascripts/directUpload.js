@@ -21,6 +21,7 @@ $(function() {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         progressBar.css('width', progress + '%')
       },
+      debugger;
       start: function (e) {
         submitButton.prop('disabled', true);
         progressBar.
