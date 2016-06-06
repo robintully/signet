@@ -3,9 +3,14 @@
       <%= f.label :parchment, "File" %>
       <%= f.file_field(:parchment.to_s+ '[0]')  %>
     </div>
+
     <div class="input-group">
       <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
       <%= f.submit "Save Envelope", class: "btn btn-default" %>
     </div>
+
+
+
+
   <% end %>
 `
