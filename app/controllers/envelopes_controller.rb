@@ -22,12 +22,10 @@ class EnvelopesController < ApplicationController
     @envelopes = current_user.envelopes
   end
 
-
   def edit
   end
 
   def update
-
   end
 
   private

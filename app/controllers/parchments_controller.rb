@@ -1,7 +1,8 @@
 class ParchmentsController < ApplicationController
 
   def create
-    @parchment = Parchment.new(s3_url: parchment_params[:parcel], envelope_id: params[:envelope_id])
+    binding.pry
+    @parchment = Parchment.new(s3_url: parchment_params[:parcel], envelope_id: find_envelope.id)
     if @parchment.save
       redirect_to @parchment.envelope, notice: "upload successful"
     else
@@ -12,7 +13,11 @@ class ParchmentsController < ApplicationController
   private
 
   def parchment_params
-    params.require(:parchment).permit(:parcel)
+    params.require(:parchment).permit(:parcel, :timestamp)
+  end
+
+  def find_envelope
+    envelope = Envelope.find_by_slug(params[:envelope_id])
   end
 
 
