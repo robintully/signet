@@ -3,4 +3,8 @@ class Envelope < ApplicationRecord
   belongs_to :user
   validates :slug, presence: true
 
+  def to_param
+    slug
+  end
+
 end
