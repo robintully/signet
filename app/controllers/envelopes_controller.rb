@@ -4,12 +4,15 @@ class EnvelopesController < ApplicationController
   before_action :set_envelope, only: [:show, :edit, :update, :authenticate]
 
   def new
+    @envelope = Envelope.new
+    @times = ExpirationSetter.expiration_options
     @user = User.new
   end
 
   def create
     slug = WordGetter.random_word
-    @envelope = Envelope.create(user: current_user, slug: slug)
+    expiration = ExpirationSetter.set_expiration(params[:envelope][:expiration])
+    @envelope = Envelope.create(user: current_user, slug: slug, expiration: expiration)
     redirect_to  "/" + @envelope.slug
   end
 
@@ -28,7 +31,7 @@ class EnvelopesController < ApplicationController
   end
 
   def authenticate
-    if @envelope.authenticate(params[:password]) 
+    if @envelope.authenticate(params[:password])
      session[:envelope_id] = @envelope.id
    end
    redirect_to  "/" + @envelope.slug

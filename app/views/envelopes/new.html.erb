@@ -1,1 +1,4 @@
-<%= link_to 'Create Envelope', envelopes_path, method: :post, class: "btn btn-default" %>
+<%= form_for @envelope do |f| %>
+  <%= f.select :expiration, options_for_select(@times ) %>
+  <%= f.submit %>
+<% end %>
