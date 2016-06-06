@@ -1,7 +1,3 @@
-
-
-
-
   <%= form_for [@envelope, Parchment.new], :html => {:multipart => true} do |f| %>
   My File
   <%= f.file_field :file, onchange: "validateFiles(this);",
