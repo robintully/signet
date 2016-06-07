@@ -13,6 +13,13 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+   config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end 
+  end
+
 end
 
 # do the things
@@ -26,3 +33,5 @@ def sign_up_user
     click_button "Register User"
   end
 end
+
+

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :users, except: :index
   resources :envelopes, except: [:edit, :delete] do
-    resources :parchments, only: :create
+    resources :parchments, only: [:create, :destroy]
   end
    post '/:slug/password', to: 'envelopes#authenticate'
   get 'sign-in', to: 'sessions#new', as: 'sign-in'

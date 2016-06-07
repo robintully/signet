@@ -8,6 +8,13 @@ class ParchmentsController < ApplicationController
     redirect_to "/" + @envelope.slug
   end
 
+
+  def destroy
+    Parchment.find_by_id(params[:id]).destroy
+    redirect_to :back
+  end
+
+
   private
 
   def find_envelope
