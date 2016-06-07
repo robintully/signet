@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <h1>Welcome to Signet!</h1>
     <p>Signet is a simple way to send files to those nearby. Just upload a couple of files and tell those nearby to enter in the short word that we made for you!</p>
-    <%= form_tag('/envelope', method: 'get') do %>
+    <%= form_tag('/search', method: 'post') do %>
       <%= text_field_tag :slug %>
       <%= submit_tag "Find an Envelope", class:'btn btn-default btn-lg'  %><br><br>
     <% end %>

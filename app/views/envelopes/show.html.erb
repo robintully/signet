@@ -8,8 +8,11 @@
 <% end %>
 <h1>Parchments: </h1>
 <% @envelope.parchments.each do |parchment| %>
-<h2> <%= link_to parchment[:file], parchment.file.url
- %> </h2>
+<h2> <%= link_to parchment[:file], parchment.file.url%> </h2>
+
+
+<%= link_to "Delete", [@envelope, parchment], :method => :delete %>
+
 <% end %>
 
 <% if @envelope.user == current_user %>
