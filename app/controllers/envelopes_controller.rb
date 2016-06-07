@@ -17,7 +17,6 @@ class EnvelopesController < ApplicationController
   end
 
   def show
-    @envelope = Envelope.find_by_slug(params[:id])
     if @envelope == nil
       redirect_to root_path, flash: {error: "That's not a valid envelope"}
     elsif @envelope.password_digest == nil
@@ -32,6 +31,7 @@ class EnvelopesController < ApplicationController
   end
 
   def authenticate
+    binding.pry
     if @envelope.authenticate(params[:password])
      session[:envelope_id] = @envelope.id
    end
