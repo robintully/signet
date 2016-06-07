@@ -1,14 +1,18 @@
 class ParchmentsController < ApplicationController
+  before_action :find_envelope, only: :create
 
   def create
-    Parchment.create( envelope_id: find_envelope.id, file:  params[:parchment]['file'])
-    redirect_to envelope_path(find_envelope)
+    binding.pry
+    params[:attachment][:file].each do |file|
+      Parchment.create( envelope_id: @envelope.id, file: file) unless file == ""
+    end
+    redirect_to "/" + @envelope.slug
   end
 
   private
 
   def find_envelope
-    envelope = Envelope.find_by_slug(params[:envelope_id])
+    @envelope = Envelope.find_by_slug(params[:envelope_id])
   end
 
 
