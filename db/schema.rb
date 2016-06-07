@@ -28,12 +28,8 @@ ActiveRecord::Schema.define(version: 20160606204451) do
   create_table "parchments", force: :cascade do |t|
     t.string   "s3_url"
     t.integer  "envelope_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "parcel_file_name"
-    t.string   "parcel_content_type"
-    t.integer  "parcel_file_size"
-    t.datetime "parcel_updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "file"
   end
 
