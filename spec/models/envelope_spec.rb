@@ -10,5 +10,4 @@ describe Envelope do
   it "has a human readable slug on save" do
     FactoryGirl.create(:envelope, slug: "beef").should be_valid
   end
-  it "contains many parchments"
 end

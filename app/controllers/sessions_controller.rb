@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email_address: params[:email_address])
-    if @user && @user.authenticate(params[:password])
+    if @user.email_confirmed == false
+      redirect_to sign_in_path, flash: {error: "Please confirm your email address to continue"}
+    elsif @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to new_envelope_path, flash: {success: "Welcome back #{@user.name}!"}
     else

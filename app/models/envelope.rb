@@ -1,7 +1,7 @@
 class Envelope < ApplicationRecord
   has_many :parchments
   belongs_to :user
-  validates :slug, presence: true
+  validates :slug, presence: true, uniqueness: true
   accepts_nested_attributes_for :parchments
   has_secure_password  :validations => false
 
