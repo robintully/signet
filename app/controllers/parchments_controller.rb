@@ -1,7 +1,9 @@
 class ParchmentsController < ApplicationController
 
   def create
-    Parchment.create( envelope_id: find_envelope.id, file:  params[:parchment]['file'])
+    params[:attachment][:file].each do |file|
+      Parchment.create( envelope_id: find_envelope.id, file: file) unless file == ""
+    end
     redirect_to envelope_path(find_envelope)
   end
 
