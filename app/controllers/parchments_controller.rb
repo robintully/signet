@@ -2,7 +2,6 @@ class ParchmentsController < ApplicationController
   before_action :find_envelope, only: :create
 
   def create
-    binding.pry
     params[:attachment][:file].each do |file|
       Parchment.create( envelope_id: @envelope.id, file: file) unless file == ""
     end
