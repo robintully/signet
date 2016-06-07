@@ -1,13 +1,22 @@
 describe "parchment creation", type: :feature do
-  sign_up_user
+  let(:user) { User.create(name: "Steven Nuñez",  email_address:"beeflover101@flatironschool.com",email_confirmed: true, password_digest: "whatever") }
+ sign_up_user
+ sign_in_user
 
-  let(:user) { User.find_by(name: "Steven Nuñez") }
+
+
+  #  before(:each) do
+  #   {'user_id' => 78}
+  # end
+
 
   feature 'User can create an envelope' do
     scenario 'they see the show page of the new envelope' do
+       session[:user_id] ||= user.id
       visit new_envelope_path
       click_button 'Create Envelope'
-      expect(page).to have_css("h1", :text => "Creator: Steven Nuñez")
+      binding.pry
+      expect(page).to have_css("a", :text => "Creatsdfor: Steven Nuñez")
     end
   end
 

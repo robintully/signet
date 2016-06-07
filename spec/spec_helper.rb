@@ -34,4 +34,12 @@ def sign_up_user
   end
 end
 
+def sign_in_user
+  before do
+    visit sign_in_path
+    fill_in "Email address", with: "beeflover101@flatironschool.com"
+    fill_in "Password", with: "secretvegetarian"
+    find('input[type=submit]').click
+  end
+end
 

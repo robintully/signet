@@ -53,6 +53,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootswatch-rails (3.3.5)
+      railties (>= 3.1)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.7.1)
@@ -378,6 +380,7 @@ DEPENDENCIES
   aws-sdk (~> 2)
   bcrypt (~> 3.1.7)
   bootstrap-sass
+  bootswatch-rails
   byebug
   capybara
   carrierwave
