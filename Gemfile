@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'figaro'
 gem 'aws-sdk', '~> 2'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
@@ -35,6 +35,8 @@ gem 'whenever'
 gem 'carrierwave'
 gem 'fog'
 gem 'file_validators'
+gem 'rubyzip', '~> 1.2.0'
+gem 'resque'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
