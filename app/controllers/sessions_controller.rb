@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to sign_in_path, flash: {error: "Please confirm your email address to continue"}
     elsif @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to new_envelope_path, flash: {success: "Welcome back #{@user.name}!"}
+      redirect_to user_path(@user)
     else
       redirect_to sign_in_path, flash: {error: "Username or password incorrect"}
     end

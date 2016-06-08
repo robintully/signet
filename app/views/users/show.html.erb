@@ -1,7 +1,16 @@
-<h1><%= @user.name %>'s dashboard</h1>
+<h1>Welcome <%= @user.name %>!</h1>
 
-<% @user.envelopes.each do |envelope| %>
-<ul class="list-unstyled">
-  <li><h4><%= link_to envelope.slug, "/#{envelope.slug}" %></h4></li>
-</ul>
-<% end %>
+<h2><strong><%= link_to 'Create a new envelope', new_envelope_path %></strong></h2>
+
+<h2><strong>Envelopes</strong></h2>
+  <% if @user.envelopes.count == 0 %>
+    <h3>No envelopes yet! Create one and send some stuff!</h3>
+  <% end %>
+<div class="col-md-4">
+  <% @user.envelopes.each do |envelope| %>
+  <ul class="list-unstyled">
+    <li><h3><%= link_to envelope.slug, "/#{envelope.slug}" %></h3></li>
+    <span class="badge"><%= envelope.parchments.count %></span> parchments in this envelope
+  </ul>
+  <% end %>
+</div>
