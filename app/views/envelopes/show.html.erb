@@ -10,6 +10,7 @@
   <div class="col-sm-4">
     <h1> <strong>Parchments:</strong> </h1>
     <% if @envelope.user == current_user %>
+    <div id = "counter"><p></p> </div>
       <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
     <% end %>
     <% @envelope.parchments.each do |parchment| %>
@@ -30,7 +31,11 @@
   </div>
 
 
-
+<script type="text/javascript"> 
+$( '#file_input' ).hover(function() {
+  $('#counter').html("Added " + $('#file_input')[0].files.length+ " Files")
+});
+</script>
 
 
 
