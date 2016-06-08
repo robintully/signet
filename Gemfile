@@ -38,6 +38,10 @@ gem 'file_validators'
 gem 'rubyzip', '~> 1.2.0'
 gem 'bootswatch-rails'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
