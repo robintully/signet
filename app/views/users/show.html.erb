@@ -1,7 +1,7 @@
 <h1><%= @user.name %>'s dashboard</h1>
 
 <% @user.envelopes.each do |envelope| %>
-<ul class="unstyled">
-  <li><%= envelope.slug %></li>
+<ul class="list-unstyled">
+  <li><h4><%= link_to envelope.slug, "/#{envelope.slug}" %></h4></li>
 </ul>
 <% end %>

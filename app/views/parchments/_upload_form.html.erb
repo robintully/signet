@@ -1,7 +1,7 @@
   <%= form_for [@envelope, Parchment.new], :html => {:multipart => true} do |f| %>
-
-  <%= f.file_field :file,multiple: true, name: "attachment[file][]", onchange: "validateFiles(this);",
-    data: { max_file_size: 5.megabytes } %>
+  <label class='btn btn-primarybtn-file center-block'>
+  <%= f.file_field :file, multiple: true, display: 'none', name: "attachment[file][]", onchange: "validateFiles(this);", data: { max_file_size: 5.megabytes }, id: 'file_input' %>
+    </label>
   <%= f.submit "Save Envelope", class: "btn btn-default" %>
   <% end %>
 
