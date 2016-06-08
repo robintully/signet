@@ -1,52 +1,37 @@
-require 'zip/zip'
-require 'zip/zipfilesystem'
-require 'open-uri'
+require 'zip'
 class FileZipper
-  @queue = :filezip_queue
 
-  def self.perform(envelope_id, id_of_user_to_be_notified)
-    user_mail = User.where(:id => id_of_user_to_be_notified).pluck(:email)
-    export = FileZipper.generate_zip(envelope_id, id_of_user_to_be_notified)
-
-    Notifications.zip_ready(export.archive_url, user_mail).deliver
+  def self.perform(envelope_id)
+    export = FileZipper.generate_zip(envelope_id)
   end
 
-  def self.generate_zip(envelope_id, id_of_user_to_be_notified)
-    object = Envelope.find(envelope_id)
-    parchments = object.parchments
-    # base temp dir
+  def self.generate_zip(envelope_id)
+    envelope = Envelope.find(envelope_id)
+    parchments = envelope.parchments
     temp_dir = Dir.mktmpdir
-    # path for zip we are about to create, I find that ruby zip needs to write to a real file
-    # This assumes the ObjectWithImages object has an attribute title which is a string.
-    zip_path = File.join(temp_dir, "#{object.slug}_#{Date.today.to_s}.zip")
+    zip_path = File.join(temp_dir, "#{envelope.slug}_#{Date.today.to_s}.zip")
 
-    Zip::ZipOutputStream.open(zip_path) do |zos|
+    Zip::OutputStream.open(zip_path) do |zos|
       parchments.each do |parchment|
-        path = parchment.s3_url
+        path = parchment.file.url
+        path = path.split('/').last
         zos.put_next_entry(path)
-        zos.write parchment.parchment.file.read
+        zos.write parchment.file.file.read
       end
     end
 
-    #Find the user that made the request
-    user = User.find(id_of_user_to_be_notified)
-
-    #Create an export object associated to the user
-    export = user.exports.build
-
-    #Associate the created zip to the export
-    export.archive = File.open(zip_path)
-
-    #Upload the archive
-    export.save!
-
-    #return the export object
+    export = envelope.archives.build
+    file = File.open(zip_path)
+    export.save
+    export.archive_file = file
     export
-  ensure
-
-    # clean up the tempdir now!
-    FileUtils.rm_rf temp_dir if temp_dir
   end
+
+  # private
+
+  # def set_user(user_id)
+    # User.where(id: user_id)
+  # end
 
 
 end

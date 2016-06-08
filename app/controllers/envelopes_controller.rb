@@ -31,7 +31,6 @@ class EnvelopesController < ApplicationController
   end
 
   def authenticate
-    binding.pry
     if @envelope.authenticate(params[:password])
      session[:envelope_id] = @envelope.id
    end
@@ -40,25 +39,25 @@ class EnvelopesController < ApplicationController
 
  def index
   @envelopes = current_user.envelopes
-end
+  end
 
-def edit
-end
+  def edit
+  end
 
-def update
-  @envelope.password = params[:password]
-  @envelope.save
-  redirect_to  "/" + @envelope.slug
-end
+  def update
+    @envelope.password = params[:password]
+    @envelope.save
+    redirect_to  "/" + @envelope.slug
+  end
 
-private
+  private
 
-def set_envelope
-  @envelope = Envelope.find_by_slug(params[:id])
-end
+  def set_envelope
+    @envelope = Envelope.find_by_slug(params[:id])
+  end
 
-def set_s3_direct_post
-  @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
-end
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+  end
 
 end

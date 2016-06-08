@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606204451) do
+ActiveRecord::Schema.define(version: 20160608134609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "archives", force: :cascade do |t|
+    t.integer "envelope_id"
+    t.binary  "archive_file"
+    t.index ["envelope_id"], name: "index_archives_on_envelope_id", using: :btree
+  end
 
   create_table "envelopes", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160606204451) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "archives"
   end
 
   create_table "parchments", force: :cascade do |t|
@@ -41,8 +48,10 @@ ActiveRecord::Schema.define(version: 20160606204451) do
     t.string   "email_address"
     t.string   "name"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
   end
 
 end
