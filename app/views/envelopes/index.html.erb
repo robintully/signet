@@ -1,9 +1,38 @@
 <h1> Envelopes: </h1>
 <% @envelopes.each do |envelope| %>
-  <h2> Slug: <%= link_to envelope.slug , "/" + envelope.slug %>  </h2>
-  <h3> Expires: <%= envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %> </h3>
-  <h3>Parchments: </h3>
-  <% envelope.parchments.each do |parchment| %>
-    <h4> <%= parchment[:file] %> </h4>
-  <% end %>
+ 
+  
+  
+
+
+
+
+
+
+<div class="row" style= "border-bottom: 3px solid black; margin-bottom:10px;">
+
+  <div class="col-sm-6">
+<h1> <strong>Envelope: </strong><%= link_to envelope.slug , "/" + envelope.slug %> </h1>
+<h1> <strong>Expires: </strong> <%= envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
+  </div>
+
+
+  <div class="col-sm-6">
+<h1> <strong>Parchments:</strong> </h1>
+
+<% envelope.parchments.each do |parchment| %>
+<h2> <%= link_to parchment[:file], parchment.file.url%> </h2>
+
+<% end %>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
 <% end %>
