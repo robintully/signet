@@ -35,6 +35,7 @@ gem 'whenever'
 gem 'carrierwave'
 gem 'fog'
 gem 'file_validators'
+gem 'bootswatch-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
