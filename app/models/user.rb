@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def set_confirmation_token
-    if self.confirm_token.blank?
+    if self.confirm_token.nil?
       self.confirm_token = SecureRandom.urlsafe_base64.to_s
     end
   end
@@ -22,6 +22,4 @@ class User < ApplicationRecord
         errors.add :base, "Not a Flatiron email address"
       end
   end
-
-
 end
