@@ -13,7 +13,7 @@
      <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
     <% end %>
    <% @envelope.parchments.each do |parchment| %>
-     <h2> <%= link_to parchment[:file], parchment.file.url%> </h2>
+     <h2> <%= link_to parchment[:file], parchment.file.url %> </h2>
      <% if @envelope.user == current_user %>
        <%= link_to "Delete", [@envelope, parchment], :method => :delete %>
      <% end %>

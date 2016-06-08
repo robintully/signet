@@ -2,4 +2,4 @@ Hi <%= @user.name %>,
 
 Thanks for registering to send files with Signet! To confirm your registration, please click the link below.
 <br><br>
-<h4><%= link_to 'Confirm email', confirm_email_url(@user.confirm_token, host: "http://localhost:3000") %></h4>
+<h4><%= link_to 'Confirm email', confirm_email_url(@user.confirm_token, host: "https://signet-app.herokuapp.com") %></h4>
