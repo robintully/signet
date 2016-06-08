@@ -36,7 +36,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'file_validators'
 gem 'rubyzip', '~> 1.2.0'
-gem 'resque'
+gem 'bootswatch-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

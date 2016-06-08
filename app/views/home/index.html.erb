@@ -1,8 +1,22 @@
-<div class="jumbotron">
-    <h1>Welcome to Signet!</h1>
-    <p>Signet is a simple way to send files to those nearby. Just upload a couple of files and tell those nearby to enter in the short word that we made for you!</p>
-    <%= form_tag('/envelope', method: 'get') do %>
-      <%= text_field_tag :slug %>
-      <%= submit_tag "Find an Envelope", class:'btn btn-default btn-lg'  %><br><br>
-    <% end %>
+<div style="background-color:transparent !important" class="jumbotron  vertical-center">
+  <h1>Welcome to Signet!</h1>
+  <p>Signet is a simple way to send files to others. Log in and create a new envelope, optionally attach a password, and select the files you want to upload and the longevity of the files. The new envelope will consist of the uploaded files and a specific slug that can be used to easily access the files. </p>
 </div>
+
+
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <%= form_tag('/search', method: 'post') do %>
+    <%= text_field_tag :slug %>
+    <%= submit_tag "Find an Envelope", class:'btn btn-default btn-lg'  %><br><br>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
