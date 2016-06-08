@@ -1,23 +1,40 @@
-<h1>Envelope: <%= @envelope.slug %> </h1>
-<h1>Creator: <%= @envelope.user.name %> </h1>
-<h1>Expires: <%= @envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
-<%= form_tag "" do %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password, nil, placeholder: "Create Password" %><br>
-  <%= submit_tag ("Assign Password"), class: "btn btn-default" %>
-<% end %>
-<h1>Parchments: </h1>
-<% @envelope.parchments.each do |parchment| %>
-<h2> <%= link_to parchment[:file], parchment.file.url%> </h2>
+<div class="row" style= "border-bottom: 3px solid black; margin-bottom:10px;">
+
+  <div class="col-sm-4">
+<h1> <strong>Envelope:</strong> <%= @envelope.slug %> </h1>
+<h1> <strong>Creator:</strong> <%= @envelope.user.name %> </h1>
+<h1> <strong>Expires:</strong> <%= @envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
+  </div>
 
 
-<%= link_to "Delete", [@envelope, parchment], :method => :delete %>
+  <div class="col-sm-4">
+  <h1> <strong>Parchments:</strong> </h1>
+    <% if @envelope.user == current_user %>
+     <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
+    <% end %>
+   <% @envelope.parchments.each do |parchment| %>
+     <h2> <%= link_to parchment[:file], parchment.file.url%> </h2>
+     <% if @envelope.user == current_user %>
+       <%= link_to "Delete", [@envelope, parchment], :method => :delete %>
+     <% end %>
+   <% end %>
+   <% if @envelope.parchments.count > 1 %>
+    <%= link_to "Download All", { controller: 'zipfile', action: 'download', method: 'get', envelope_id: @envelope.id, disable_with: 'Downloading Zip...' }, class: "btn btn-default" %>
+    <br><br>
+    <% end %>
+  </div>
 
-<% end %>
 
+
+
+
+
+
+  <div class="col-sm-4">
 <% if @envelope.user == current_user %>
-  <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
+  <%= form_tag "" do %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil, placeholder: "Create Password" %><br>
+    <%= submit_tag ("Assign Password"), class: "btn btn-default" %>
+  <% end %>
 <% end %>
-
-
-

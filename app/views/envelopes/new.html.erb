@@ -1,4 +1,5 @@
 <%= form_for @envelope do |f| %>
+  <%= f.label :expiration, 'Select an Expiration' %>
   <%= f.select :expiration, options_for_select(@times ) %>
   <%= f.submit %>
 <% end %>

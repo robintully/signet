@@ -32,12 +32,14 @@ class EnvelopesController < ApplicationController
 
   def authenticate
     if @envelope.authenticate(params[:password])
-     session[:envelope_id] = @envelope.id
-   end
-   render :show
- end
+      session[:envelope_id] = @envelope.id
+      render :show
+    else
+      render :enterpassword, flash: {error: 'Incorrect password'}
+    end
+  end
 
- def index
+  def index
     @envelopes = current_user.envelopes
   end
 

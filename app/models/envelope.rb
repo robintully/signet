@@ -1,5 +1,6 @@
 class Envelope < ApplicationRecord
   has_many :parchments
+  has_many :archives
   belongs_to :user
   validates :slug, presence: true, uniqueness: true
   accepts_nested_attributes_for :parchments

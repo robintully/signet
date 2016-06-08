@@ -7,7 +7,7 @@ describe User do
   it "is invalid without a name" do
     FactoryGirl.build(:user, name: nil).should_not be_valid
   end
-  it "is invalid without an email address" do
-    FactoryGirl.build(:user, email_address: nil).should_not be_valid
+  it "is valid witho a flatiron email address" do
+    FactoryGirl.build(:user, email_address: Faker::Name.name  + "@flatironschool.com" ).should be_valid
   end
 end
