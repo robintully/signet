@@ -22,7 +22,7 @@ class RegistrationsController < ApplicationController
       user.validate_email
       user.save(validate: false)
       session[:user_id] = user.id
-      redirect_to root_path, flash: {success: "Thanks for confirming your email address!"}
+      redirect_to user_path(user), flash: {success: "Thanks for confirming your email address!"}
     else
       redirect_to sign_up_path, flash: {error: "Sorry, user doesn't exist"}
     end

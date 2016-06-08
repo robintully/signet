@@ -1,5 +1,5 @@
 <%= form_for @envelope do |f| %>
-  <%= f.label :expiration, 'Select an Expiration' %>
-  <%= f.select :expiration, options_for_select(@times ) %>
-  <%= f.submit %>
+  <h3><%= f.label :expiration, 'Select an Expiration' %></h3><br>
+  <%= f.select :expiration, options_for_select(@times), {}, class:'btn btn-default btn-xl dropdown-toggle' %>
+  <%= f.submit 'Create Envelope', class: 'btn btn-default' %>
 <% end %>
