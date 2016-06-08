@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :parchments, only: [:create, :destroy]
   end
   get 'zipfile', to: 'zipfile#download', as: 'zipfile_download'
+    get 'download', to: 'download#download_single'
+
   get 'sign-in', to: 'sessions#new', as: 'sign-in'
   post 'sign-in', to: 'sessions#create'
   get 'sign-up', to: 'registrations#new', as: 'sign-up'

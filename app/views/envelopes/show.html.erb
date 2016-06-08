@@ -1,26 +1,29 @@
 <div class="row" style= "border-bottom: 3px solid black; margin-bottom:10px;">
 
   <div class="col-sm-4">
-<h1> <strong>Envelope:</strong> <%= @envelope.slug %> </h1>
-<h1> <strong>Creator:</strong> <%= @envelope.user.name %> </h1>
-<h1> <strong>Expires:</strong> <%= @envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
+    <h1> <strong>Envelope:</strong> <%= @envelope.slug %> </h1>
+    <h1> <strong>Creator:</strong> <%= @envelope.user.name %> </h1>
+    <h1> <strong>Expires:</strong> <%= @envelope.expiration.strftime("%a, %b %-d, %Y, %I:%M %p") %></h1>
   </div>
 
 
   <div class="col-sm-4">
-  <h1> <strong>Parchments:</strong> </h1>
+    <h1> <strong>Parchments:</strong> </h1>
     <% if @envelope.user == current_user %>
-     <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
+    <%= render partial: '/parchments/upload_form', locals: {envelope: @envelope} %>
     <% end %>
-   <% @envelope.parchments.each do |parchment| %>
-     <h2> <%= link_to parchment[:file], parchment.file.url %> </h2>
-     <% if @envelope.user == current_user %>
-       <%= link_to "Delete", [@envelope, parchment], :method => :delete %>
-     <% end %>
-   <% end %>
-   <% if @envelope.parchments.count > 1 %>
-    <%= link_to "Download All", { controller: 'zipfile', action: 'download', method: 'get', envelope_id: @envelope.id, disable_with: 'Downloading Zip...' }, class: "btn btn-default" %>
-    <br><br>
+    <% @envelope.parchments.each do |parchment| %>
+    <h2> <%=  parchment[:file] %> </h2>
+    <%= link_to "Download", { controller: 'download', action: 'download_single', method: 'get', parchment_id: parchment.id}, class: "btn btn-default" %>
+    <% if @envelope.user == current_user %>
+    <%= link_to "Delete", [@envelope, parchment], :method => :delete %>
+    <% end %>
+    <% end %>
+    <% if @envelope.parchments.count > 1 %>
+    <div class="row" style= "margin-top: 10px;">
+      <%= link_to "Download All", { controller: 'zipfile', action: 'download', method: 'get', envelope_id: @envelope.id, disable_with: 'Downloading Zip...' }, class: "btn btn-default" %>
+      <br><br>
+    </div>
     <% end %>
   </div>
 
@@ -31,10 +34,10 @@
 
 
   <div class="col-sm-4">
-<% if @envelope.user == current_user %>
-  <%= form_tag "" do %>
+    <% if @envelope.user == current_user %>
+    <%= form_tag "" do %>
     <%= label_tag :password %>
     <%= password_field_tag :password, nil, placeholder: "Create Password" %><br>
     <%= submit_tag ("Assign Password"), class: "btn btn-default" %>
-  <% end %>
-<% end %>
+    <% end %>
+    <% end %>
