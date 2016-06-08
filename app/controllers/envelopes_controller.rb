@@ -38,7 +38,11 @@ class EnvelopesController < ApplicationController
  end
 
  def index
+<<<<<<< HEAD
+  @envelopes = current_user.envelopes
+=======
     @envelopes = current_user.envelopes
+>>>>>>> bc76101967480aa83c8454d16d7cef1dc2bac162
   end
 
   def edit
@@ -47,13 +51,21 @@ class EnvelopesController < ApplicationController
   def update
     @envelope.password = params[:password]
     @envelope.save
+<<<<<<< HEAD
+    redirect_to  "/" + @envelope.slug
+=======
     render :show
+>>>>>>> bc76101967480aa83c8454d16d7cef1dc2bac162
   end
 
   private
 
   def set_envelope
+<<<<<<< HEAD
+    @envelope = Envelope.find_by_slug(params[:id])
+=======
     @envelope = Envelope.find_by_slug(params[:slug])
+>>>>>>> bc76101967480aa83c8454d16d7cef1dc2bac162
   end
 
   def set_s3_direct_post

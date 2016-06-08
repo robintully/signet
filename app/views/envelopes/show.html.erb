@@ -33,6 +33,14 @@
   <%= password_field_tag :password, nil, placeholder: "Create Password" %><br>
   <%= submit_tag ("Assign Password"), class: "btn btn-default" %>
 <% end %>
+<h1>Parchments: </h1>
+<% @envelope.parchments.each do |parchment| %>
+  <h2> <%= link_to parchment[:file], parchment.file.url %> </h2>
+<% end %>
+
+<% if @envelope.parchments.count > 1 %>
+  <%= link_to "Download All", { controller: 'zipfile', action: 'download', method: 'get', envelope_id: @envelope.id, disable_with: 'Downloading Zip...' }, class: "btn btn-default" %>
+  <br><br>
 <% end %>
   </div>
 </div>
